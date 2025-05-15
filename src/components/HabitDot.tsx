@@ -36,7 +36,7 @@ const HabitDot: React.FC<HabitDotProps> = ({ day, initialState = 'unmarked', onC
     'w-8 h-8 rounded-full cursor-pointer transition-all duration-200 flex items-center justify-center',
     isAnimating && 'animate-pulse-dot',
     {
-      'bg-gray-200 hover:bg-gray-300': state === 'unmarked',
+      'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600': state === 'unmarked',
       'bg-gym': state === 'gym',
       'bg-diet': state === 'diet',
       'bg-gradient-to-r from-gym to-diet': state === 'both',
@@ -50,7 +50,12 @@ const HabitDot: React.FC<HabitDotProps> = ({ day, initialState = 'unmarked', onC
       title={`Day ${day}`}
       aria-label={`Day ${day}: ${state}`}
     >
-      <span className="text-xs font-semibold text-gray-700">{day}</span>
+      <span className={cn(
+        "text-xs font-semibold",
+        state === 'unmarked' ? 'text-gray-700 dark:text-gray-300' : 'text-white'
+      )}>
+        {day}
+      </span>
     </div>
   );
 };
